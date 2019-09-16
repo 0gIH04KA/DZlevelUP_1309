@@ -21,7 +21,8 @@ namespace DZlevelUP_1309
 
         static void Factorial()
         {
-            Console.Write("Введите число:");
+            Console.WriteLine("Диапазон вычисления Факториала: 0 - 170!");
+            Console.Write("Введите число: ");
             string s = Console.ReadLine();
 
             double nums;
