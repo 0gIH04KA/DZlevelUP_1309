@@ -19,12 +19,29 @@ namespace DZlevelUP_1309
 
         static int TryParseNums()
         {
-            int i;
-            while (!int.TryParse(Console.ReadLine(), out i))
+            int i = 0;
+
+            if (!int.TryParse(Console.ReadLine(), out i))
             {
                 Console.WriteLine("Введите число!");
+                if (int.TryParse(Console.ReadLine(), out i))
+                {
+                    return i;
+                }
+                else
+                {
+                    Console.WriteLine("Введите число!");
+                    return TryParseNums();
+                }
+               
             }
             return i;
+
+            //while (!int.TryParse(Console.ReadLine(), out i))
+            //{
+            //    Console.WriteLine("Введите число!");
+            //}
+            //return i;
         }
 
         static void Factorial()
