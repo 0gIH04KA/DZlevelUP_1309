@@ -11,22 +11,19 @@ namespace DZlevelUP_1309
             Print();
 
 
-
-
-
             Console.ReadKey();
         }
 
         static int TryParseNums()
         {
-            int i = 0;
+            int number;
 
-            if (!int.TryParse(Console.ReadLine(), out i))
+            if (!int.TryParse(Console.ReadLine(), out number))
             {
                 Console.WriteLine("Введите число!");
-                if (int.TryParse(Console.ReadLine(), out i))
+                if (int.TryParse(Console.ReadLine(), out number))
                 {
-                    return i;
+                    return number;
                 }
                 else
                 {
@@ -35,7 +32,7 @@ namespace DZlevelUP_1309
                 }
                
             }
-            return i;
+            return number;
 
             //while (!int.TryParse(Console.ReadLine(), out i))
             //{
@@ -49,13 +46,13 @@ namespace DZlevelUP_1309
             Console.WriteLine("Диапазон вычисления Факториала: 0 - 170!");
             Console.Write("Введите число: ");
             
-            double nums = TryParseNums();
+            double number = TryParseNums();
 
-            double res = GetFactorial(nums);
+            double result = GetFactorial(number);
 
-            if (res > 0)
+            if (result > 0)
             {
-                Console.WriteLine($"Факториал числа {nums} равен {res}");
+                Console.WriteLine($"Факториал числа {number} равен {result}");
             }
             else
             {
@@ -64,17 +61,17 @@ namespace DZlevelUP_1309
 
         }
 
-        static double GetFactorial(double x)
+        static double GetFactorial(double number)
         {
-            if (x >= 0 && x <= 170)
+            if (number >= 0 && number <= 170)
             {
-                if (x == 1 || x == 0)
+                if (number == 1 || number == 0)
                 {
                     return 1;
                 }
                 else
                 {
-                    return x * GetFactorial(x - 1);
+                    return number * GetFactorial(number - 1);
                 }
             }
             else
@@ -88,19 +85,29 @@ namespace DZlevelUP_1309
             Console.WriteLine("Сколько чисел хотите сравнить?");
 
             int AmountNumbers = TryParseNums();
-            int[] arrayNums = new int[AmountNumbers];
 
-            for (int i = 0; i < arrayNums.Length; i++)
+            if (AmountNumbers > 0)
             {
-                Console.Write("{0}-е число: ", i + 1);
-                arrayNums[i] = TryParseNums();
+                int[] arrayNums = new int[AmountNumbers];
+
+                for (int i = 0; i < arrayNums.Length; i++)
+                {
+                    Console.Write("{0}-е число: ", i + 1);
+                    arrayNums[i] = TryParseNums();
+                }
+
+                int count = arrayNums.Length,
+                    number = arrayNums[arrayNums.Length - 1];
+
+                Console.WriteLine("Min: " + GetFindingMinNumber(arrayNums, count, number));
+                Console.WriteLine("Max: " + GetFindingMaxNumber(arrayNums, count, number));
+            }
+            else
+            {
+                Console.WriteLine("Введите чило больше НУЛЯ!");
             }
 
-            int count = arrayNums.Length,
-            number = arrayNums[arrayNums.Length - 1];
-
-            Console.WriteLine("Min: " + GetFindingMinNumber(arrayNums, count, number));
-            Console.WriteLine("Max: " + GetFindingMaxNumber(arrayNums, count, number));
+            
         }
 
         static int GetFindingMinNumber(int[] mass, int count, int number) //
